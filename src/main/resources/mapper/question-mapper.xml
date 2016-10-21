@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.entity.mapper.QuestionMapper">
+    <insert id="insertQuestion" parameterType="net.entity.Question">
+        INSERT INTO question(type, question, option1, option2, option3, option4)
+        VALUES (#{type}, #{question}, #{option1}, #{option2}, #{option3}, #{option4})
+    </insert>
+
+    <select id="selectAllQuestion" resultType="net.entity.Question">
+        select * from question;
+    </select>
+
+
+    <!--<resultMap id="questionResult" type="net.entity.Question">-->
+
+    <!--</resultMap>-->
+    <select id="selectQuestionById" parameterType="int" resultType="net.entity.Question">
+        SELECT question.questionid, question.question, question.option1, question.option2, question.option3,question.option4,question.type
+        FROM question, connection
+        WHERE question.questionid = connection.questionid AND connection.questionnaireid = ${questionnaireId};
+    </select>
+</mapper>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.entity.mapper.QuestionnaireMapper">
+    <insert id="insertQuestionnaire" useGeneratedKeys="true" keyProperty="questionnaireId" parameterType="net.entity.Questionnaire">
+        INSERT INTO questionnaire(questionnairename, introduction)
+        VALUES ("", "")
+    </insert>
+    <update id="updateQuestionnaireRelease">
+        UPDATE questionnaire SET isrelease = "1"
+    </update>
+    <update id="updateQuestionnaire" parameterType="net.entity.Questionnaire">
+        UPDATE questionnaire SET questionnaireName = #{questionnaireName}, introduction = #{introduction} WHERE questionnaireId = #{questionnaireId}
+    </update>
+    <delete id="deleteQuestionnaire" parameterType="int">
+        DELETE FROM questionnaire WHERE questionnaireId = #{questionnaireId}
+    </delete>
+
+
+    <select id="selectAllQuestionnaire" resultType="net.entity.Questionnaire">
+        SELECT * FROM questionnaire
+    </select>
+    <select id="selectQuestionnaireById" parameterType="int" resultType="net.entity.Questionnaire">
+        SELECT * FROM questionnaire WHERE questionnaire.questionnaireid = #{questionnaireId}
+    </select>
+    <select id="selectNoIssueQuestionnaire" resultType="net.entity.Questionnaire">
+        SELECT * FROM questionnaire WHERE questionnaire.isrelease = "0"
+    </select>
+    <select id="selectIssueQuestionnaire" resultType="net.entity.Questionnaire">
+        SELECT * FROM questionnaire WHERE questionnaire.isrelease = "1"
+    </select>
+</mapper>

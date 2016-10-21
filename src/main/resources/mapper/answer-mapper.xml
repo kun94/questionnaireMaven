@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.entity.mapper.AnswerMapper">
+
+    <insert id="insertAnswer" parameterType="net.entity.Answer">
+        INSERT INTO answer(answer1, answer2, answer3, answer4, questionnaireId, questionId)
+        VALUES (#{answer1}, #{answer2},#{answer3},#{answer4},#{questionnaireId},#{questionId})
+    </insert>
+    <select id="selectAllAnswer" resultType="net.entity.Answer">
+        SELECT * FROM answer
+    </select>
+    <select id="selectAllAnswerById" parameterType="int" resultType="net.entity.Answer">
+        SELECT * FROM answer WHERE questionnaireId = #{questionnaireId}
+    </select>
+</mapper>
